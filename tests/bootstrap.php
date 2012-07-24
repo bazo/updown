@@ -38,7 +38,7 @@ Guzzle\Tests\GuzzleTestCase::setServiceBuilder(Guzzle\Service\Builder\ServiceBui
     'test.updown' => array(
         'class' => 'Neoxygen\UpDown\UpDownClient',
         'params' => array(
-            'host' => '192.168.43.89',
+            'host' => '192.168.2.10',
             'port' => 7474,
             )
     )
