@@ -21,7 +21,7 @@ class createNode extends AbstractCommand
 	{
 		if(!empty($properties)) {
 		$this->set('properties', $properties);
-	}
+		}
 	}
 
 	protected function build()

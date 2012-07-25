@@ -1,11 +1,11 @@
 <?php
 
-class findNoteTest extends Guzzle\Tests\GuzzleTestCase
+class findNoteByIdTest extends Guzzle\Tests\GuzzleTestCase
 {
 	public function testValidReturnedNode()
 	{
 		$client = $this->getServiceBuilder()->get('test.updown');
-		$command = $client->getCommand('findNode');
+		$command = $client->getCommand('Node\findNodeById');
 		$nodeId = 11;
 		$command->setId($nodeId);
 
@@ -21,7 +21,7 @@ class findNoteTest extends Guzzle\Tests\GuzzleTestCase
 	public function testValidationExceptionWhenNoIdIsProvided()
 	{
 		$client = $this->getServiceBuilder()->get('test.updown');
-		$command = $client->getCommand('findNode');
+		$command = $client->getCommand('Node\findNodeById');
 
 		$execute = $client->execute($command);
 	}
