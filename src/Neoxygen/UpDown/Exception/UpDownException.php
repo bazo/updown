@@ -14,7 +14,7 @@ class UpDownException extends \Exception
 	public function __construct(\Exception $exception)
 	{
 		$this->formatException($exception);
-		parent::__construct('An error occured with the Command request', $exception->getCode());
+		parent::__construct('An error occured with the Command request - '.$this->errorInfo['message'], $exception->getCode());
 	}
 
 	public function formatException($exception)
