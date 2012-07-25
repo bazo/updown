@@ -1,18 +1,18 @@
 <?php
 
-class findNoteByIdTest extends Guzzle\Tests\GuzzleTestCase
+class deleteNodeTest extends Guzzle\Tests\GuzzleTestCase
 {
 	public function testValidReturnedNode()
 	{
 		$client = $this->getServiceBuilder()->get('test.updown');
-		$command = $client->getCommand('Node\findNodeById');
+		$command = $client->getCommand('Node\deleteNode');
 		$nodeId = 11;
 		$command->setId($nodeId);
 
 		$execute = $client->execute($command);
 		$result = $command->getResult();
 
-		$this->assertTrue(array_key_exists('outgoing_relationships', $result));
+		$this->assertEquals('204', $command->getResponse()->getStatusCode());
 	}
 
 	/**
