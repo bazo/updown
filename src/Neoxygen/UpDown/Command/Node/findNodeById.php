@@ -1,6 +1,6 @@
 <?php
 
-namespace Neoxygen\UpDown\Command;
+namespace Neoxygen\UpDown\Command\Node;
 
 use Guzzle\Service\Command\AbstractCommand;
 
@@ -10,7 +10,7 @@ use Guzzle\Service\Command\AbstractCommand;
  * 
  * @guzzle id doc="The ID of the node to find" required="true"
  */
-class findNode extends AbstractCommand
+class findNodeById extends AbstractCommand
 {
 	public function setId($id)
 	{

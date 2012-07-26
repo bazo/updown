@@ -5,6 +5,8 @@ namespace Neoxygen\UpDown;
 use Guzzle\Service\Client;
 use Guzzle\Service\Inspector;
 use Guzzle\Service\Description\ServiceDescription;
+use Guzzle\Http\Exception\BadResponseException;
+use Neoxygen\UpDown\Exception\UpDownException;
 
 class UpDownClient extends Client
 {
@@ -86,8 +88,8 @@ class UpDownClient extends Client
     public function discoverActions()
     {
         if(empty($this->discoveredActions)) {
-            $cmd = $this->getCommand('discoverActions');
-            $exec = $this->execute($cmd);
+            //$cmd = $this->getCommand('discoverActions');
+            $exec = $this->getUris();
             foreach($exec as $key => $value) {
                 if(!is_array($value)) {
                     $this->discoveredActions[$key] = $value;
@@ -120,5 +122,23 @@ class UpDownClient extends Client
             throw new \Exception('The requested action does not exist');
         }
         return $this->discoveredActions[$action];
+    }
+
+    public function getUris()
+    {
+        $request = $this->get('/db/data');
+        $request->setHeader('Accept', 'application/json');
+        $response = $request->send();
+
+        return json_decode($response->getBody(true));
+    }
+
+    public function execute($command)
+    {
+        try {
+            parent::execute($command);
+        } catch(BadResponseException $e) {
+            throw new UpDownException($e);
+        }
     }
 }
