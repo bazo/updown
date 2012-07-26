@@ -14,6 +14,6 @@
         "guzzle/guzzle": "*"
     },
     "autoload": {
-        "psr-0": { "Neoxygen": "src/" }
+        "psr-0": { "Neoxygen\\UpDown": "src/" }
     }
 }
