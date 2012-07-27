@@ -116,6 +116,14 @@ class UpDownClient extends Client
         return $this->discoveredActions;
     }
 
+    /**
+     * Find the correct URI for a given action
+     * example : node => http://localhost:7474/db/data/node
+     * 
+     * @param type $action the action to find the uri
+     * @return string the uri for the given action
+     * @throws \Exception
+     */
     public function getUriForAction($action)
     {
         if(!array_key_exists($action, $this->discoveredActions)) {
@@ -124,6 +132,12 @@ class UpDownClient extends Client
         return $this->discoveredActions[$action];
     }
 
+    /**
+     * Returns all the discovered actions associated with uri's from
+     * the entry point
+     * 
+     * @return type
+     */
     public function getUris()
     {
         $request = $this->get('/db/data');
@@ -133,6 +147,12 @@ class UpDownClient extends Client
         return json_decode($response->getBody(true));
     }
 
+    /**
+     * Overrides the parent *execute* method to catch exceptions
+     * 
+     * @param type $command
+     * @throws UpDownException
+     */
     public function execute($command)
     {
         try {
