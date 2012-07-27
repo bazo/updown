@@ -37,4 +37,9 @@ class batchNodeCreate extends AbstractCommand
 	{
 		return parent::getResult();
 	}
+        
+        public function getBatch()
+        {
+            return $this->batch;
+        }
 }
