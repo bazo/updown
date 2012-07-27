@@ -2,6 +2,8 @@
 
 namespace Neoxygen\UpDown;
 
+use Guzzle\Service\Builder\ServiceBuilder;
+
 class ClientService
 {
     private $host;
