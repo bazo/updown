@@ -9,8 +9,8 @@ class sendCypherQueryTest extends Guzzle\Tests\GuzzleTestCase
 		$node = array('name' => 'Angus Young', '_uid' => uniqid());
                 $query = 'create n={node} return n';
                 $params = array('node' => $node);
-                $cypher = array('query' => $query, 'params' => $params);
-                $command->setQuery($cypher);
+                $command->setQuery($query);
+                $command->setParameters($params);
 
 		$execute = $client->execute($command);
 		$result = $command->getResult();
