@@ -63,7 +63,8 @@ For example, if you want to *GET* the available API action links, you can do thi
 In the backend, this command make a request to the endpoint of the API and return you the response with all the available links.
 
 _The API is discoverable, and *UpDown* is built with this discoverability in mind, so at the bootstrap it will first fetch the 
-available links at the endpoint, this way if the API URI scheme change, this library will not break_
+available links at the endpoint, this way if the API URI scheme change, this library will not break_ :
+
 
 ````
 $command = $client->getCommand('discoverActions');
@@ -74,9 +75,12 @@ try {
 }
 
 var_dump($client->getResult());
+
 ````
 
+
 This call will return you in case of success something like this :
+
 
 ````
 array
@@ -97,6 +101,7 @@ array
   'batch' => string 'http://192.168.43.149:7474/db/data/batch' (length=40)
   'cypher' => string 'http://192.168.43.149:7474/db/data/cypher' (length=41)
   'neo4j_version' => string '1.8.M06-1-g87a127a' (length=18)
+
 ````
 
 By default, the response will be returned to you in a php array. Other options will come later.
