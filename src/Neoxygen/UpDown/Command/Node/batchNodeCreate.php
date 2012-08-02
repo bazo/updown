@@ -23,14 +23,12 @@ class batchNodeCreate extends AbstractCommand
 
 	protected function build()
 	{
-            
-            
-            
 		$uri = $this->client->getUriForAction('batch');
 		$this->request = $this->client->post(array($uri, $this->data));
 		$this->request->setBody(json_encode($this->batch));
 		$this->request->setHeader('Accept', 'application/json');
 		$this->request->setHeader('Content-Type', 'application/json');
+                $this->request->setHeader('X-Stream', 'true');
 	}
 
 	public function getResult()

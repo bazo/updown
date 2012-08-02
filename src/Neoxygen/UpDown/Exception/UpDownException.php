@@ -21,9 +21,8 @@ class UpDownException extends \Exception
 	{
 		$this->errorInfo['statusCode'] = $exception->getResponse()->getStatusCode();
 		$body = $exception->getResponse()->getBody(true);
-		$msg = json_decode($body);
-		$this->errorInfo['message'] = $msg->message;
-		$this->fullStackTrace = $msg;
+		$this->errorInfo['message'] = $body;
+		//$this->fullStackTrace = $body;
 	}
 
 	public function setMessage($message)
