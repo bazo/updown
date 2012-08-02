@@ -35,6 +35,8 @@ First you need to instantiate the Service Factory with and to provide some basic
 
 _Note: This step will be made easier in the future_
 
+````
+
 <?php
 
 require 'vendor/autoload.php';
