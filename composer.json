@@ -2,7 +2,7 @@
     "name": "neoxygen/updown",
     "type": "library",
     "description": "A simple Rest API Client for Neo4j",
-    "keywords": ["Guzzle"],
+    "keywords": ["Neo4j", "Client", "HTTP", "GraphDB", "Graph", "BigData", "Command", "Neo"],
     "authors": [
         {
             "name": "Christophe Willemsen",
