@@ -4,3 +4,4 @@
 # in the future
 which neo4j && sudo neo4j start
 sleep 3
+neo4j info
