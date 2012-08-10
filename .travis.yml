@@ -7,4 +7,8 @@ before_script:
   - php composer.phar install --install-suggests
   - cp phpunit.xml.dist phpunit.xml
   - ~/.nvm/nvm.sh run default vendor/guzzle/guzzle/tests/Guzzle/Tests/Http/server.js &
+before_install:
+  - ./bin/ci/start_neo4j_server.sh
 script: phpunit
+jdk:
+  - oraclejdk7
