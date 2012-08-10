@@ -8,6 +8,18 @@ if (!file_exists(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'composer.lock')) {
         . "See https://github.com/composer/composer/blob/master/README.md for help with installing composer\n");
 }
 
+// Ensure that the Neo4j server is started and accessible
+$ch = curl_init('http://localhost:7474');
+curl_setopt($ch, CURLOPT_NOBODY, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_exec($ch);
+$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+if (200 !== $response_code){
+    die("The Neo4j server is not accessible at localhost on port 7474");
+}
+
+
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 // Register an autoloader for the client being tested

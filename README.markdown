@@ -4,6 +4,10 @@
 
 *UpDown* is a simple PHP client that wraps the Neo4j ReST API. UpDown is based upon [Guzzle](https://github.com/guzzle/guzzle).
 
+## CI
+
+[![Build Status](https://secure.travis-ci.org/neoxygen/updown.png?branch=master)](http://travis-ci.org/neoxygen/updown)
+
 ## Goal
 
 *UpDown*'s goal is to provide a flexible way to make calls to your Neo4j ReST API. 
