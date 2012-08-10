@@ -7,7 +7,7 @@ class sendCypherQueryTest extends Guzzle\Tests\GuzzleTestCase
 		$client = $this->getServiceBuilder()->get('test.updown');
 		$command = $client->getCommand('Cypher\sendCypherQuery');
 		$node = array('name' => 'Angus Young', '_uid' => uniqid());
-                $query = 'create n={node} return n';
+                $query = 'CREATE n={node} return n';
                 $params = array('node' => $node);
                 $command->setQuery($query);
                 $command->setParameters($params);
