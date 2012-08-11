@@ -4,10 +4,13 @@ class sendCypherQueryTest extends Guzzle\Tests\GuzzleTestCase
 {
 	public function testCypherCreateOneNode()
 	{
-		$this->markTestIncomplete(
-          'This test pass in local but not on Travis. Why ?.'
-        );
 		$client = $this->getServiceBuilder()->get('test.updown');
+		$discovery = $client->getDiscoveredActions();
+		if ('1.7.2' === $discovery['neo4j_version']) {
+			$this->markTestIncomplete(
+          		'Neo4j version 1.7.2 does not support create with cypher'
+        	);
+		}
 		$command = $client->getCommand('Cypher\sendCypherQuery');
 		$node = array('name' => 'Angus Young', '_uid' => uniqid());
                 $query = 'CREATE n={node} return n';
