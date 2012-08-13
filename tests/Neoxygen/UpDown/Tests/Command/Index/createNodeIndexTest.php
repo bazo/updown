@@ -12,7 +12,9 @@ class createNodeIndexTest extends Guzzle\Tests\GuzzleTestCase
 		$execute = $client->execute($command);
 		$result = $command->getResult();
 
+		$list = $this->getIndexesList();
 		$this->assertTrue(201 === $command->getResponse()->getStatusCode());
+		$this->assertTrue(array_key_exists($indexName, $list));
 	}
 
 	public function testNodeIsCreatedWithConfig()
@@ -27,10 +29,19 @@ class createNodeIndexTest extends Guzzle\Tests\GuzzleTestCase
 		$execute = $client->execute($command);
 		$result = $command->getResult();
 
-		/**
-		 * @TODO: Add a check to retrieve the node index when getIndexList Command is created
-		 */
+		$list = $this->getIndexesList();
 		$this->assertTrue(201 === $command->getResponse()->getStatusCode());
+		$this->assertTrue(array_key_exists($indexName, $list));
+		$this->assertEquals($config['type'], $list[$indexName]['type']);
 
+	}
+
+	private function getIndexesList()
+	{
+		$client = $this->getServiceBuilder()->get('test.updown');
+		$command = $client->getCommand('Index\listNodeIndexes');
+		$execute = $client->execute($command);
+		$result = $command->getResult();
+		return $result;
 	}
 }
