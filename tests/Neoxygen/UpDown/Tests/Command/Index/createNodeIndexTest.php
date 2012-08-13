@@ -17,7 +17,7 @@ class createNodeIndexTest extends Guzzle\Tests\GuzzleTestCase
 		$this->assertTrue(array_key_exists($indexName, $list));
 	}
 
-	public function testNodeIsCreatedWithConfig()
+	public function testNodeIndexIsCreatedWithConfig()
 	{
 		$client = $this->getServiceBuilder()->get('test.updown');
 		$command = $client->getCommand('Index\createNodeIndex');
@@ -34,6 +34,11 @@ class createNodeIndexTest extends Guzzle\Tests\GuzzleTestCase
 		$this->assertTrue(array_key_exists($indexName, $list));
 		$this->assertEquals($config['type'], $list[$indexName]['type']);
 
+	}
+
+	public function testNodeIndexIsNotCreatedIfConfigIsInvalid()
+	{
+		// @TODO
 	}
 
 	private function getIndexesList()

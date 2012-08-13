@@ -10,6 +10,8 @@ use Guzzle\Service\Command\AbstractCommand;
  *
  * @guzzle name doc="the index name" required="true"
  * @guzzle config doc="configuration options for custom index"
+ *
+ * @TODO: DO NOT CREATE INDEX IF CONFIG IS INVALID / USE EXCEPTIONS
  */
 class createNodeIndex extends AbstractCommand
 {
