@@ -67,7 +67,6 @@ class UpDownClient extends Client
 
         // Uncomment the following two lines to use an XML service description
         // $client->setDescription(ServiceDescription::factory(__DIR__ . DIRECTORY_SEPARATOR . 'client.xml'));
-
         return $client;
     }
 
@@ -87,20 +86,20 @@ class UpDownClient extends Client
      */
     public function discoverActions()
     {
-        if(empty($this->discoveredActions)) {
+        if (empty($this->discoveredActions)) {
             //$cmd = $this->getCommand('discoverActions');
             $exec = $this->getUris();
-            foreach($exec as $key => $value) {
-                if(!is_array($value)) {
+            foreach ($exec as $key => $value) {
+                if (!is_array($value)) {
                     $this->discoveredActions[$key] = $value;
                 } else {
                     $subName = $key;
-                    foreach($value as $sk => $sv) {
+                    foreach ($value as $sk => $sv) {
                         $ssname = $subName.'.'.$sk;
-                        if(!is_array($sv)) {
+                        if (!is_array($sv)) {
                             $this->discoveredActions[$ssname] = $sv;
                         } else {
-                            foreach($sv as $ssk => $ssv) {
+                            foreach ($sv as $ssk => $ssv) {
                                 $sssname = $ssname.'.'.$ssk;
                                 $this->discoveredActions[$sssname] = $ssv;
                             }
@@ -119,23 +118,24 @@ class UpDownClient extends Client
     /**
      * Find the correct URI for a given action
      * example : node => http://localhost:7474/db/data/node
-     * 
-     * @param type $action the action to find the uri
-     * @return string the uri for the given action
+     *
+     * @param  type       $action the action to find the uri
+     * @return string     the uri for the given action
      * @throws \Exception
      */
     public function getUriForAction($action)
     {
-        if(!array_key_exists($action, $this->discoveredActions)) {
+        if (!array_key_exists($action, $this->discoveredActions)) {
             throw new \Exception('The requested action does not exist');
         }
+
         return $this->discoveredActions[$action];
     }
 
     /**
      * Returns all the discovered actions associated with uri's from
      * the entry point
-     * 
+     *
      * @return type
      */
     public function getUris()
@@ -149,15 +149,15 @@ class UpDownClient extends Client
 
     /**
      * Overrides the parent *execute* method to catch exceptions
-     * 
-     * @param type $command
+     *
+     * @param  type            $command
      * @throws UpDownException
      */
     public function execute($command)
     {
         try {
             parent::execute($command);
-        } catch(BadResponseException $e) {
+        } catch (BadResponseException $e) {
             throw new UpDownException($e);
         }
     }
