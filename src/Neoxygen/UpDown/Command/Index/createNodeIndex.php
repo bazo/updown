@@ -8,7 +8,7 @@ use Guzzle\Service\Command\AbstractCommand;
 /**
  * Sends an API call to find a node in the database
  *
- * @guzzle name doc="the index name"
+ * @guzzle name doc="the index name" required="true"
  */
 class createNodeIndex extends AbstractCommand
 {
