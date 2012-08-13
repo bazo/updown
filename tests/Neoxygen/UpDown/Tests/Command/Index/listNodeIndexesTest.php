@@ -9,7 +9,6 @@ class listNodeIndexesTest extends Guzzle\Tests\GuzzleTestCase
 
 		$execute = $client->execute($command);
 		$result = $command->getResult();
-		print_r($result);
 
 		$this->assertTrue(200 === $command->getResponse()->getStatusCode());
 	}
