@@ -123,4 +123,7 @@ Here you find a list of the currently available commands :
 * Node\deleteNode
 * Node\batchNodeCreate (should be removed in the future in favor of a generic batch command)
 * searchNodeIndex (should move to Index\searchNodeIndex)
+* Index\listNodeIndexes
+* Index\createNodeIndex
+* Index\deleteNodeIndex
 
