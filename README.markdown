@@ -45,18 +45,11 @@ _Note: This step will be made easier in the future_
 
 require 'vendor/autoload.php';
 
+use Neoxygen\UpDown\ClientService;
 
-use Guzzle\Service\Builder\ServiceBuilder;
-use Neoxygen\UpDown\Exception\UpDownException;
-
-
-$config = array('updown' => array(
-	'class' => 'Neoxygen\UpDown\UpDownClient', // The client class
-	'params' => array('host' => '192.168.43.149', 'port' => 7474))); // Connection configuration
-// Source service definitions from a JSON file
-$builder = ServiceBuilder::factory($config);
-
-$client = $builder['updown'];
+$dbParams = array('host' => 'localhost', 'port' => 7474);
+$service = new ClientService($dbParams);
+$client = $service->getClient();
 
 ````
 

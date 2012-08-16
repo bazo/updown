@@ -10,18 +10,17 @@ class ClientService
 
     private $port;
 
-    public function __construct(array $config = array())
+    public function __construct(array $dbParams)
     {
-        if (!isset($config['host']) || !isset($config['port'])) {
+        if (!isset($dbParams['host']) || !isset($dbParams['port'])) {
             throw new \Exception('You must specify a host and port name/number');
         }
-        $this->host = $config['host'];
-        $this->port = $config['port'];
+        $this->host = $dbParams['host'];
+        $this->port = $dbParams['port'];
     }
 
     public function getClient()
     {
-
     $config = array('updown' => array(
     'class' => 'Neoxygen\UpDown\UpDownClient',
     'params' => array('host' => $this->host, 'port' => $this->port)));
@@ -29,7 +28,7 @@ class ClientService
     $builder = ServiceBuilder::factory($config);
 
     $client = $builder['updown'];
-
+    
     return $client;
     }
 }

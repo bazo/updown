@@ -1,6 +1,6 @@
 <?php
 
-namespace Neoxygen\UpDown\Command;
+namespace Neoxygen\UpDown\Command\Node;
 
 use Guzzle\Service\Command\AbstractCommand;
 
