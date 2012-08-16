@@ -8,7 +8,7 @@ class addNodeToIndexTest extends Guzzle\Tests\GuzzleTestCase
 		$client = $this->getServiceBuilder()->get('test.updown');
 		$command = $client->getCommand('Node\createNode');
 		$properties = array(
-			'username' => 'christophe',
+			'username' => 'christophe'.uniqid(),
 			'lastname' => 'willemsen',
 			);
 		$command->setProperties($properties);

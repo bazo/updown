@@ -11,6 +11,7 @@ use Guzzle\Service\Command\AbstractCommand;
  * @guzzle nodeUri doc="The node uri" required="true"
  * @guzzle key doc="The key of the node to index" required="true"
  * @guzzle value doc="The key value of the node to index" required="true"
+ * @guzzle unique doc="True if the index mapping has to be unique"
  */
 class addNodeToIndex extends AbstractCommand
 {
@@ -35,6 +36,11 @@ class addNodeToIndex extends AbstractCommand
         $this->set('value', $value);
     }
 
+    public function setUnique()
+    {
+        $this->set('unique', true);
+    }
+
     protected function build()
     {
         $index = urlencode($this->get('indexName'));
@@ -46,7 +52,11 @@ class addNodeToIndex extends AbstractCommand
             );
 
         $uri = $this->client->getUriForAction('node_index');
-        $this->request = $this->client->post(array($uri.'/'.$index, $this->data));
+        $uri .= '/'.$this->get('indexName');
+        if ($this->get('unique', false)){
+            $uri .= '?unique';
+        }
+        $this->request = $this->client->post(array($uri, $this->data));
         $this->request->setBody(json_encode($body));
         $this->request->setHeader('Accept', 'application/json');
         $this->request->setHeader('Content-Type', 'application/json');
