@@ -25,6 +25,8 @@ class relateToNodeTest extends Guzzle\Tests\GuzzleTestCase
 		$exec = $client->execute($command2);
 		$rslt = $command2->getResult();
 
+
+		//create the relationship between the two nodes
 		$start = $result['create_relationship'];
 		$end = $rslt['self'];
 		$type = 'KNOWS';
@@ -41,5 +43,18 @@ class relateToNodeTest extends Guzzle\Tests\GuzzleTestCase
 		$this->assertEquals($result['self'], $relrslt['start']);
 		$this->assertEquals($end, $relrslt['end']);
 		$this->assertEquals($type, $relrslt['type']);
+
+		$start_node_relationships_uri = $result['all_typed_relationships'];
+		$cm = $client->getCommand('Node\getNodeRelationships');
+		$cm->setNode($start_node_relationships_uri);
+		$xc = $client->execute($cm);
+
+		$relationFound = false;
+		foreach ($cm->getResult() as $relation){
+			if ($relation['start'] == $result['self']){
+				$relationFound = true;
+			}
+		}
+		$this->assertTrue($relationFound);
 	}
 }
