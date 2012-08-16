@@ -7,7 +7,7 @@ use Guzzle\Service\Command\AbstractCommand;
 /**
  * Sends an API call to find the node Relationships in a database
  *
- * @guzzle nodeUri doc="the all_typed_relationships uri of the node" required="true"
+ * @guzzle nodeUri doc="the full node uri" required="true"
  */
 class getNodeRelationships extends AbstractCommand
 {
@@ -18,7 +18,14 @@ class getNodeRelationships extends AbstractCommand
 
     protected function build()
     {
-        $uri = $this->get('nodeUri');
+        $cl = $this->getClient();
+        $command = $cl->getCommand('Common\sendSimpleGet');
+        $command->setUri($this->get('nodeUri'));
+        $exec = $cl->execute($command);
+        $rslt = $command->getResult();
+        $reluri = $rslt['all_typed_relationships'];
+
+        $uri = $reluri;
         $this->request = $this->client->get(array($uri, $this->data));
         $this->request->setHeader('Accept', 'application/json');
     }

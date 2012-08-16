@@ -43,10 +43,9 @@ class relateToNodeTest extends Guzzle\Tests\GuzzleTestCase
 		$this->assertEquals($result['self'], $relrslt['start']);
 		$this->assertEquals($end, $relrslt['end']);
 		$this->assertEquals($type, $relrslt['type']);
-
-		$start_node_relationships_uri = $result['all_typed_relationships'];
+		
 		$cm = $client->getCommand('Node\getNodeRelationships');
-		$cm->setNode($start_node_relationships_uri);
+		$cm->setNode($result['self']);
 		$xc = $client->execute($cm);
 
 		$relationFound = false;
