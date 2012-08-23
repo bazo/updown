@@ -105,6 +105,41 @@ array
 
 By default, the response will be returned to you in a php array. Other options will come later.
 
+
+### Some examples:
+
+#### Creating a node :
+````
+$node = array(
+  'id' => uniqid(),
+  'name' => 'neo',
+  'job' => 'actor'
+  );
+$cmd = $client->getCommand('Node\createNode');
+$cmd->setProperties($node);
+$xc = $client->execute($cmd);
+$result = $cmd->getResult();
+````
+
+#### Adding a node to an index
+````
+// You need the full uri of the node (_self_)
+// let's say we add the node to the index after the above creation
+$uri = $result['self'];
+$cmd = $client->getCommand('Node\addNodeToIndex');
+$cmd->setIndex('actors'); // The index name
+$cmd->setKey('name'); // The index key
+$cmd->setValue($node['name']); // The index key value
+$cmd->setUri($uri); // The node uri
+$xc = $client->execute($cmd);
+$result = $cmd->getResult();
+
+// If you want to add a unique index, just add the following before the execution of the command
+$cmd->setUnique();
+````
+
+
+
 ### Available commands
 
 Here you find a list of the currently available commands :
