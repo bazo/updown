@@ -26,7 +26,7 @@ class updateNode extends AbstractCommand
 
     public function setPropertiesUri($uri)
     {
-        $this->set('properties_uri', $properties_uri);
+        $this->set('properties_uri', $uri);
     }
 
     protected function build()
