@@ -19,7 +19,7 @@ class createNode extends AbstractCommand
     public function setProperties(array $properties)
     {
         if (!empty($properties)) {
-        $this->set('properties', $properties);
+			$this->set('properties', $properties);
         }
     }
 
