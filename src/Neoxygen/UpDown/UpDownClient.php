@@ -83,6 +83,8 @@ class UpDownClient extends Client
      * This function calls the entry point and fetch
      * the links to the possible actions of Neo4j
      * It wraps sub arrays with the "." character
+	 * 
+	 * @return UpDownClient
      */
     public function discoverActions()
     {
@@ -108,6 +110,7 @@ class UpDownClient extends Client
                 }
             }
         }
+		return $this;
     }
 
     public function getDiscoveredActions()
