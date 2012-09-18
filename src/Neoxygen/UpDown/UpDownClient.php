@@ -156,7 +156,7 @@ class UpDownClient extends Client
     public function execute($command)
     {
         try {
-            parent::execute($command);
+            return parent::execute($command);
         } catch (BadResponseException $e) {
             throw new UpDownException($e);
         }
