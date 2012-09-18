@@ -18,30 +18,30 @@ class sendCypherQuery extends AbstractCommand
 
     public function setQuery($query)
     {
-            $this->cypherQuery = $query;
+		$this->cypherQuery = $query;
     }
 
-        public function setParameters(array $parameters)
-        {
-            $this->cypherParams = $parameters;
-        }
+	public function setParameters(array $parameters)
+	{
+		$this->cypherParams = $parameters;
+	}
 
     protected function build()
     {
-            $body = array('query' => $this->cypherQuery);
-            if (!empty($this->cypherParams)) {
-                $body['params'] = $this->cypherParams;
-            }
+		$body = array('query' => $this->cypherQuery);
+		if (!empty($this->cypherParams)) {
+			$body['params'] = $this->cypherParams;
+		}
 
-            $uri = $this->client->getUriForAction('cypher');
-            $this->request = $this->client->post(array($uri, $this->data));
-            $this->request->setBody(json_encode($body));
-            $this->request->setHeader('Accept', 'application/json');
-            $this->request->setHeader('Content-Type', 'application/json');
+		$uri = $this->client->getUriForAction('cypher');
+		$this->request = $this->client->post(array($uri, $this->data));
+		$this->request->setBody(json_encode($body));
+		$this->request->setHeader('Accept', 'application/json');
+		$this->request->setHeader('Content-Type', 'application/json');
     }
 
     public function getResult()
     {
-            return parent::getResult();
+		return parent::getResult();
     }
 }
