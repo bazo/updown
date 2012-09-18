@@ -27,7 +27,7 @@ class batchNodeCreate extends AbstractCommand
         $this->request->setBody(json_encode($this->batch));
         $this->request->setHeader('Accept', 'application/json');
         $this->request->setHeader('Content-Type', 'application/json');
-                $this->request->setHeader('X-Stream', 'true');
+		$this->request->setHeader('X-Stream', 'true');
     }
 
     public function getResult()
@@ -35,8 +35,8 @@ class batchNodeCreate extends AbstractCommand
         return parent::getResult();
     }
 
-        public function getBatch()
-        {
-            return $this->batch;
-        }
+	public function getBatch()
+	{
+		return $this->batch;
+	}
 }
