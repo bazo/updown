@@ -21,9 +21,16 @@ class ClientService
 
     public function getClient()
     {
-		$config = array('updown' => array(
-		'class' => 'Neoxygen\UpDown\UpDownClient',
-		'params' => array('host' => $this->host, 'port' => $this->port)));
+		$config = array(
+			'updown' => array(
+				'class' => 'Neoxygen\UpDown\UpDownClient',
+				'params' => array(
+					'host' => $this->host, 
+					'port' => $this->port
+				)
+			)
+		);
+		
 		// Source service definitions from a JSON file
 		$builder = ServiceBuilder::factory($config);
 
